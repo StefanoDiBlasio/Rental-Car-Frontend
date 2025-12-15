@@ -1,1 +1,83 @@
-<p>signup works!</p>
+<div class="bg" style="background-color: #F8F8F8;">
+   <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+        <div class="parent">
+            <div class="child">
+                <div nz-row class="imgDiv">
+                    <div nz-col nzSpan="24">
+                       <h1 style="margin-left: 50px;">Registrazione</h1>
+                    </div>
+                </div>
+                <form nz-form [formGroup]="signupForm">
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback nzErrorTip="Nome obbligatorio">
+                            <input
+                            nz-input
+                            placeholder="Nome"
+                            formControlName="firstName"
+                            />
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback nzErrorTip="Cognome obbligatorio">
+                            <input
+                            nz-input
+                            placeholder="Cognome"
+                            formControlName="lastName"
+                            />
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback nzErrorTip="Username non valido!">
+                            <input nz-input placeholder="Username" id="username" formControlName="username"/>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback [nzErrorTip]="errorPass">
+                            <input nz-input placeholder="Password" type="password" id="password" formControlName="password"/>
+                            <ng-template #errorPass let-control>
+                                <ng-container   *ngIf="control.hasError('required')">
+                                    Password richiesta!
+                                </ng-container>
+                                <ng-container   *ngIf="control.hasError('pattern')">
+                                    La Password deve contenere 8 caratteri, 1 Minuscola, 1 Maiuscola, 1 Numero & 1 Carattere Speciale
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback [nzErrorTip]="errorTpl">
+                            <input nz-input placeholder="Confirm password" type="password" id="checkPassword" formControlName="checkPassword"/>
+                            <ng-template #errorTpl let-control>
+                                <ng-container   *ngIf="control.hasError('required')">
+                                    Conferma la tua password!
+                                </ng-container>
+                                <ng-container   *ngIf="control.hasError('confirm')">
+                                    Le due password non coincidono  !
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback nzErrorTip="Data di nascita obbligatoria">
+                            <nz-date-picker
+                                nzPlaceHolder="Data di nascita"
+                                formControlName="birthDate"
+                                nzFormat="yyyy-MM-dd"
+                                style="width: 100%;">
+                            </nz-date-picker>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" 
+                    (click)="register()" [disabled]="signupForm.invalid">Register</button>
+                    Oppure <a routerLink="/login"> Effettua il login!</a>
+                </form>
+            </div>
+        </div>
+   </nz-spin> 
+</div>
