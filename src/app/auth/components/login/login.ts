@@ -10,6 +10,10 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { AdminRoutingModule } from "../../../modules/admin/admin-routing-module";
 import { Auth } from '../services/auth/auth';
+import { Storage } from '../services/storage/storage';
+import { jwtDecode } from 'jwt-decode';
+import { Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +36,7 @@ export class Login {
   isSpinning:boolean = false;
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: Auth) {}
+  constructor(private fb: FormBuilder, private authService: Auth, private router: Router, private message: NzMessageService) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -42,9 +46,36 @@ export class Login {
   }
 
   login() {
-    console.log(this.loginForm.value)
-    this.authService.login(this.loginForm.value).subscribe((res) => {
-      console.log(res)
-    })
+    if(this.loginForm.invalid) {
+      return;
+    }
+
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (res: any) => {
+        console.log(res)
+        const token = res.token;
+        const tokenDecoded: any = jwtDecode(token);
+
+        if(res) {
+          const user = {
+            username: res.username,
+            role: tokenDecoded.role
+          }
+          Storage.saveToken(token);
+          Storage.saveUser(JSON.stringify(user));
+          if(Storage.isAdminLoggedIn()) {
+            this.router.navigateByUrl("/admin/dashboard");
+          } else if(Storage.isCustomerLoggedIn()) {
+            this.router.navigateByUrl("/customer/dashboard");
+          } else {
+            this.message.error("ERRORE: Bad Credentials", {nzDuration: 50000});
+          }
+          
+        }
+      },
+      error: (err) => {
+        console.error('Errore nella login: ' + err);
+      }
+    });
   }
 }
