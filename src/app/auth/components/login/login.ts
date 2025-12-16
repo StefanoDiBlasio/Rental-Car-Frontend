@@ -62,7 +62,7 @@ export class Login {
             role: tokenDecoded.role
           }
           Storage.saveToken(token);
-          Storage.saveUser(JSON.stringify(user));
+          Storage.saveUser(user);
           if(Storage.isAdminLoggedIn()) {
             this.router.navigateByUrl("/admin/dashboard");
           } else if(Storage.isCustomerLoggedIn()) {

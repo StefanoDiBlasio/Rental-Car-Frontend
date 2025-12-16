@@ -46,4 +46,9 @@ export class Storage {
     const role:string = this.getUserRole();
     return role == "CUSTOMER";
   }
+
+  static logout(): void {
+    localStorage.removeItem(TOKEN);
+    localStorage.removeItem(USER);
+  }
 }

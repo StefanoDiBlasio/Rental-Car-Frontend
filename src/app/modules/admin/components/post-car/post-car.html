@@ -1,0 +1,64 @@
+<div style="margin-top: 50px;">
+    <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+        <div class="parent">
+            <div class="child">
+                <div nz-row class="imgDiv">
+                    <h2 style="margin-left: 230px;">Aggiungi auto</h2>
+                </div>
+                <form nz-form [formGroup]="postCarForm">
+                
+                    <div nz-col nzSpan="24">
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="Campo richiesto!">
+                                <input nz-input placeholder="Marchio" formControlName="casaCostruttrice"/>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+
+                    <div nz-col nzSpan="24">
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="Campo richiesto!">
+                                <input nz-input placeholder="Modello" formControlName="modello"/>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+
+                    <div nz-col nzSpan="24">
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="Campo richiesto!">
+                                <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Selenziona un tipo auto" formControlName="autoType">
+                                    @for (type of listOfTypes; track type) {
+                                        <nz-option 
+                                            [nzLabel]="type"
+                                            [nzValue]="type">
+                                        </nz-option>
+                                    }
+                                </nz-select>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+
+                    <div nz-col nzSpan="24">
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="Campo richiesto!">
+                                <input nz-input placeholder="Anno di immatricolazione" formControlName="annoImmatricolazione"/>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+
+                    <div nz-col nzSpan="24">
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="Campo richiesto!">
+                                <input nz-input placeholder="Targa" formControlName="targa"/>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+
+                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="postCar()">
+                        Aggiungi auto
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nz-spin>
+</div>
