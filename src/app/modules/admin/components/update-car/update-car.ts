@@ -56,7 +56,7 @@ export class UpdateCar {
         this.updateForm.patchValue(carDto);
       },
       error: (err) => {
-        this.message.error("C'è stato un problema con il reperimento dei dati dell'auto.")
+        this.message.error("C'è stato un problema con il reperimento dei dati dell'auto.");
       }
     })
   }

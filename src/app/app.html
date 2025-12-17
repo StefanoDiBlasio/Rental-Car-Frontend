@@ -1,15 +1,3 @@
-@if (!isAdminLoggedIn) {
-  <nz-header class="main-header" nz-row nzType="flex" class="custom-navbar">
-    <div class="navbar-title">
-        <a routerLink="/login">Car Rental Service</a>
-    </div>
-    <div class="nav-links">
-      <a nz-button nzType="link" routerLink="/register" routerLinkActive="active">Registrazione</a>
-      <a nz-button nzType="link" routerLink="/login" routerLinkActive="active">Login</a>
-    </div>
-  </nz-header>
-}
-
 @if(isAdminLoggedIn){
   <nz-header class="main-header" nz-row nzType="flex" class="custom-navbar">
     <div class="navbar-title">
@@ -23,14 +11,26 @@
   </nz-header>
 }
 
-@if (isCustomerLoggedIn) {
+@else if (isCustomerLoggedIn) {
   <nz-header class="main-header" nz-row nzType="flex" class="custom-navbar">
     <div class="navbar-title">
         <a routerLink="/login">Interfaccia Cliente</a>
     </div>
     <div class="nav-links">
-      <a nz-button nzType="link" routerLink="/customer/dashboard" routerLinkActive="active">Dashboard Admin</a>
+      <a nz-button nzType="link" routerLink="/customer/dashboard" routerLinkActive="active">Dashboard Customer</a>
       <a nz-button nzType="link" (click)="logout()" routerLinkActive="active">Logout</a>
+    </div>
+  </nz-header>
+}
+
+@else {
+  <nz-header class="main-header" nz-row nzType="flex" class="custom-navbar">
+    <div class="navbar-title">
+        <a routerLink="/login">Car Rental Service</a>
+    </div>
+    <div class="nav-links">
+      <a nz-button nzType="link" routerLink="/register" routerLinkActive="active">Registrazione</a>
+      <a nz-button nzType="link" routerLink="/login" routerLinkActive="active">Login</a>
     </div>
   </nz-header>
 }
