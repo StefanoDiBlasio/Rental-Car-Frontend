@@ -1,0 +1,26 @@
+<div style="margin-top: 150px;">
+    <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+        <div class="parent">
+            <div class="child">
+                <div nz-row class="imgDiv">
+                    <h2 style="margin-left: 95px;">Aggiorna targa auto</h2>
+                </div>
+
+                <form nz-form nzLayout="vertical" [formGroup]="updateForm">
+                    <div nz-row>
+                        <div nz-col nzSpan="24">
+                            <nz-form-item>
+                                <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="Campo richiesto!">
+                                    <input nz-input placeholder="Targa" formControlName="targa"/>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="updateCar()">
+                        Aggiorna
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nz-spin>
+</div>

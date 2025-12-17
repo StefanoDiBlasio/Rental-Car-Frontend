@@ -71,7 +71,7 @@ export class PostCar {
         this.router.navigateByUrl("/admin/dashboard");
         console.log(res);
       }, error: (err) => {
-      this.message.error("C'è stato un errore durante l'inserimento dell'auto!", {nzDuration: 5000});
+      this.message.error("C'è stato un errore durante l'inserimento dell'auto.", {nzDuration: 5000});
       }
     })
   }

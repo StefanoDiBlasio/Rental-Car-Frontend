@@ -18,6 +18,30 @@ export class Admin {
     })
   }
 
+  getAllCars(): Observable<any> {
+    return this.http.get(BASE_URL + "/api/v1/auto/all", {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+  deleteCar(id:number): Observable<any> {
+    return this.http.delete(BASE_URL + "/api/v1/auto/" + id, {
+      headers: this.createAuthorizationHeader()
+    });
+  }
+
+  getCarById(id: number): Observable<any> {
+    return this.http.get(BASE_URL + "/api/v1/auto/" + id, {
+      headers: this.createAuthorizationHeader()
+    });
+  }
+
+  updateCar(carId:number, carDto: any): Observable<any>{  
+    return this.http.put(BASE_URL + "/api/v1/auto/" + carId, carDto, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
   createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
     return authHeaders.set(
