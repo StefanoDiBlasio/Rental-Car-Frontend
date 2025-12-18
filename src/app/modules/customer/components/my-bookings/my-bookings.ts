@@ -3,6 +3,7 @@ import { Customer } from '../../services/customer';
 import { CommonModule } from '@angular/common';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-my-bookings',
@@ -10,7 +11,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
   imports: [
     CommonModule,
     NzTableModule,
-    NzSpinModule,
+    NzSpinModule
   ],
   templateUrl: './my-bookings.html',
   styleUrl: './my-bookings.scss',
@@ -20,7 +21,7 @@ export class MyBookings {
   bookings:any;
   isSpinning = false;
 
-  constructor(private customerService: Customer) {
+  constructor(private customerService: Customer, private message: NzMessageService) {
     this.getMyBookings();
   }
 
@@ -34,8 +35,8 @@ export class MyBookings {
           days: this.calculateBookingDays(b.inizioPrenotazione, b.finePrenotazione)
         }));
       },
-      error: (err) => {
-
+      error: () => {
+        this.message.error("Qualcosa è andato storto nel reperimento delle tue prenotazioni.", {nzDuration: 5000});
       }
     })
   }

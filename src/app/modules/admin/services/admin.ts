@@ -42,6 +42,24 @@ export class Admin {
     })
   }
 
+  getAllBookings(): Observable<any> {
+    return this.http.get(BASE_URL + "/api/v1/prenotazione/all", {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+  approveBooking(bookingId:number): Observable<any> {
+    return this.http.put(BASE_URL + "/api/v1/prenotazione/approve/" + bookingId, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+  rejectBooking(bookingId:number): Observable<any> {
+    return this.http.put(BASE_URL + "/api/v1/prenotazione/reject/" + bookingId, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
   createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
     return authHeaders.set(
