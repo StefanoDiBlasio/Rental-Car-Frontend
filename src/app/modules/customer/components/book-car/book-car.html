@@ -12,11 +12,41 @@
                     <hr>
                     <h5>Immatricolazione: <b>{{car.annoImmatricolazione}}</b> - Targa: <b>{{car.targa}}</b></h5>
                     <hr>
-                    <div style="float: right;">
-                        <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" routerLink="/customer/book/{{car.id}}">Prenota</button>
-                    </div>
                 </div>
             </div>
         </div>
+        <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working..." style="margin-top: 50px;">
+            <div class="dashboard-filter">
+                <form [formGroup]="validateForm">
+                    <div class="filter-grid">
+                        <div class="filter-select-dropdown filter-fields-width">
+                            <nz-form-item style="margin-left: 50px;">
+                                <nz-form-label [nzSpan]="0" nzFor="Data Inizio Prenotazione" >Data Inizio Prenotazione</nz-form-label>
+                                <nz-form-control [nzSpan]="0">
+                                    <nz-date-picker formControlName="inizioPrenotazione" style="width: 100%;"
+                                    nzPlaceHolder="Data Inizio Prenotazione" name="Data Inizio Prenotazione" [nzFormat]="dateFormat" id="Data Inizio Prenotazione">
+                                    </nz-date-picker>
+                                </nz-form-control>                            
+                            </nz-form-item>
+
+                            <nz-form-item style="margin-left: 50px;">
+                                <nz-form-label [nzSpan]="0" nzFor="Data Fine Prenotazione" >Data Fine Prenotazione</nz-form-label>
+                                <nz-form-control [nzSpan]="0">
+                                    <nz-date-picker formControlName="finePrenotazione" style="width: 100%;"
+                                    nzPlaceHolder="Data Fine Prenotazione" name="Data Fine Prenotazione" [nzFormat]="dateFormat" id="Data Fine Prenotazione">
+                                    </nz-date-picker>
+                                </nz-form-control>                            
+                            </nz-form-item>
+                        </div>
+                        <div class="filter-select-dropdown filter-fields-width">
+                            <button class="filterBtn" style="margin-left: 45px;" nz-button nzType="primary"
+                            (click)="bookCar(validateForm.value)">
+                            Prenota auto
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nz-spin>
     </div>
 }

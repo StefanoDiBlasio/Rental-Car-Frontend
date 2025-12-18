@@ -1,0 +1,20 @@
+<nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+    <nz-table #basicTable [nzData]="bookings" [nzPageSize]="20" [nzShowPagination]="'false'">
+        <thead>
+            <tr>
+                <th style="font-weight: bolder; color: #003973;">Inizio Prenotazione</th>
+                <th style="font-weight: bolder; color: #003973;">Fine Prenotazione</th>
+                <th style="font-weight: bolder; color: #003973;">Totale Giorni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (booking of basicTable.data; track $index) {
+                <tr>
+                    <td>{{booking.inizioPrenotazione | date: 'MMM d, y'}}</td>
+                    <td>{{booking.finePrenotazione | date: 'MMM d, y'}}</td>
+                    <td>{{booking.days}}</td>
+                </tr>
+            }
+        </tbody>
+    </nz-table>
+</nz-spin>

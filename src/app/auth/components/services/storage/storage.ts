@@ -20,6 +20,12 @@ export class Storage {
     window.localStorage.setItem(USER, JSON.stringify(user));
   }
 
+  static getUserId(): string {
+    const user = this.getUser();
+    if(user == null) {return '';}
+    return user.id;
+  }
+
   static getToken() {
     return localStorage.getItem(TOKEN);
   }

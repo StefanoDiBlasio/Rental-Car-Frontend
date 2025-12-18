@@ -58,6 +58,7 @@ export class Login {
 
         if(res) {
           const user = {
+            id: res.userId,
             username: res.username,
             role: tokenDecoded.role
           }

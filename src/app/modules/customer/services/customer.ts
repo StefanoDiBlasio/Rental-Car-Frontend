@@ -24,6 +24,18 @@ export class Customer {
     })
   }
 
+  bookCar(bookCarDto:any): Observable<any> {
+    return this.http.post(BASE_URL + "/api/v1/prenotazione/add", bookCarDto, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+  getBookingsByUserId(): Observable<any> {
+    return this.http.get(BASE_URL + "/api/v1/prenotazione/all/" + Storage.getUserId(), {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
   createAuthorizationHeader(): HttpHeaders {
   let authHeaders: HttpHeaders = new HttpHeaders();
   return authHeaders.set(
