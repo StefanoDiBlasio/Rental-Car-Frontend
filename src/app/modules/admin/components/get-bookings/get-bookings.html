@@ -2,6 +2,7 @@
     <nz-table #basicTable [nzData]="bookings" [nzPageSize]="20" [nzShowPagination]="'false'">
         <thead>
             <tr>
+                <th style="font-weight: bolder; color: #003973;">Prenotazione N°</th>
                 <th style="font-weight: bolder; color: #003973;">Cliente</th>
                 <th style="font-weight: bolder; color: #003973;">Auto</th>
                 <th style="font-weight: bolder; color: #003973;">Inizio Prenotazione</th>
@@ -14,6 +15,7 @@
         <tbody>
             @for (booking of basicTable.data; track $index) {
                 <tr>
+                    <td>{{booking.id}}</td>
                     <td>{{booking.firstName}} {{booking.lastName}}</td>
                     <td>{{booking.casaCostruttrice}} {{booking.modello}} {{booking.targa}} <br> Targa: {{booking.targa}}</td>
                     <td>{{booking.inizioPrenotazione | date: 'MMM d, y'}}</td>

@@ -1,0 +1,81 @@
+<div class="inner-content">
+   <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+        <div class="dashboard-filter">
+            <div class="filter-grid horizontal-form" [formGroup]="searchCarForm">
+                <div class="filter-select-dropdown filter-fields-width">
+
+                    <nz-form-item>
+                        <nz-form-label nzFor="gender">Marchio</nz-form-label>
+                        <nz-form-control nzErrorTip="Campo richiesto!">
+                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Seleziona un marchio" formControlName="casaCostruttrice">
+                                @for (brand of listOfBrands; track brand) {
+                                    <nz-option nzLabel="{{brand}}" nzValue="{{brand}}"></nz-option>
+                                }
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label nzFor="studentClass">Modello</nz-form-label>
+                        <nz-form-control nzErrorTip="Campo richiesto!">
+                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Seleziona un modello" formControlName="modello">
+                                @for (modello of listOfModels; track modello) {
+                                    <nz-option nzLabel="{{modello}}" nzValue="{{modello}}"></nz-option>
+                                }
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label nzFor="gender">Immatricolazione</nz-form-label>
+                        <nz-form-control nzErrorTip="Campo richiesto!">
+                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Seleziona un anno di Immatricolazione" formControlName="annoImmatricolazione">
+                                @for (anno of listOfAnni; track anno) {
+                                    <nz-option nzLabel="{{anno}}" nzValue="{{anno}}"></nz-option>
+                                }
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label nzFor="studentClass">Tipo auto</nz-form-label>
+                        <nz-form-control nzErrorTip="Campo richiesto!">
+                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Seleziona un tipo auto" formControlName="autoType">
+                                @for (autoType of listOfTypes; track autoType) {
+                                    <nz-option nzLabel="{{autoType}}" nzValue="{{autoType}}"></nz-option>
+                                }
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                </div>
+
+                <div class="filter-select-dropdown filter-fields-width">
+                    <button class="filterBtn" nz-button nzType="primary" (click)="searchCar()">
+                        Cerca
+                    </button>
+                </div>
+            </div>
+        </div>
+   </nz-spin> 
+</div>
+
+<div style="background-color: #F8F8F8;">
+    @for (car of cars; track car) {
+        <div class="child" style="padding-bottom: 30px;">
+            <div nz-row>
+                <div nz-col nzSpan="24">
+                    <h2 style="cursor: pointer; color: #108ee9;">
+                        {{car.casaCostruttrice}} - {{car.modello}}
+                    </h2>
+                    <p>Tipo: {{car.autoType}}</p>
+                    <hr>
+                    <p>Immatricolazione: {{car.annoImmatricolazione}}</p>
+                    <hr>
+                    <h5>Targa: {{car.targa}}</h5>
+                </div>
+            </div>
+        </div>
+    }
+    
+</div>

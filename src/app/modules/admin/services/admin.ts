@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Storage } from '../../../auth/components/services/storage/storage';
@@ -57,6 +57,20 @@ export class Admin {
   rejectBooking(bookingId:number): Observable<any> {
     return this.http.put(BASE_URL + "/api/v1/prenotazione/reject/" + bookingId, {
       headers: this.createAuthorizationHeader()
+    })
+  }
+
+  searchFilteredCars(searchCarDto: any): Observable<any> {
+    let params = new HttpParams();
+    Object.keys(searchCarDto).forEach(key => {
+    const value = searchCarDto[key];
+    if (value !== null && value !== undefined && value !== '') {
+      params = params.set(key, value.toString());
+    }
+    });
+    return this.http.get(BASE_URL + '/api/v1/auto/search', {
+        headers: this.createAuthorizationHeader(),
+        params
     })
   }
 

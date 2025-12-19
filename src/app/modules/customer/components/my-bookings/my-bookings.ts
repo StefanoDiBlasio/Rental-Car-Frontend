@@ -29,6 +29,7 @@ export class MyBookings {
     this.isSpinning = true;
     this.customerService.getBookingsByUserId().subscribe({
       next: (res:any) => {
+        console.log(res);
         this.isSpinning = false;
         this.bookings = res.map((b:any) => ({
           ...b,
