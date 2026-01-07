@@ -85,6 +85,12 @@ export class Admin {
     })
   }
 
+  getAllUserBookings(userId:any): Observable<any> {
+    return this.http.get(BASE_URL + "/api/v1/prenotazione/all/" + userId, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
   approveBooking(bookingId:number): Observable<any> {
     return this.http.put(BASE_URL + "/api/v1/prenotazione/approve/" + bookingId, {
       headers: this.createAuthorizationHeader()

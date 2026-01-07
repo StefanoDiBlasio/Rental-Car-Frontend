@@ -6,12 +6,14 @@ import { UpdateCar } from './components/update-car/update-car';
 import { GetBookings } from './components/get-bookings/get-bookings';
 import { SearchCar } from './components/search-car/search-car';
 import { UpdateCustomer } from './components/update-customer/update-customer';
+import { GetUserBookings } from './components/get-user-bookings/get-user-bookings';
 
 const routes: Routes = [
   {path: "dashboard", component: AdminDashboard},
   {path: "car", component: PostCar},
   {path: "car/:id", component: UpdateCar},
   {path: "bookings", component: GetBookings},
+  {path: "customer/:id/bookings", component: GetUserBookings},
   {path: "search", component: SearchCar},
   {path: "customer/:id", component: UpdateCustomer},
 ];

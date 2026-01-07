@@ -13,6 +13,8 @@
                     <hr>
                     <div style="float: right;">
                         <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+                         [routerLink]="['/admin/customer', customer.id, 'bookings']" >Prenotazioni</button>
+                        <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
                          [routerLink]="['/admin/customer/', customer.id]" >Aggiorna cliente</button>
                         @if(customer.enabled) {
                             <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"

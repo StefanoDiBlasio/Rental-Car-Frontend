@@ -1,0 +1,44 @@
+<nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+          
+    <nz-table #basicTable [nzData]="bookings" [nzPageSize]="20" [nzShowPagination]="'false'">
+        <thead>
+            <tr>
+                <th style="font-weight: bolder; color: #003973;">Prenotazione N°</th>
+                <th style="font-weight: bolder; color: #003973;">Cliente</th>
+                <th style="font-weight: bolder; color: #003973;">Auto</th>
+                <th style="font-weight: bolder; color: #003973;">Inizio Prenotazione</th>
+                <th style="font-weight: bolder; color: #003973;">Fine Prenotazione</th>
+                <th style="font-weight: bolder; color: #003973;">Totale Giorni</th>
+                <th style="font-weight: bolder; color: #003973;">Stato</th>
+                <th style="font-weight: bolder; color: #003973;">Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (booking of basicTable.data; track $index) {
+                <tr>
+                    <td>{{booking.id}}</td>
+                    <td>{{booking.firstName}} {{booking.lastName}}</td>
+                    <td>{{booking.casaCostruttrice}} {{booking.modello}} {{booking.targa}} <br> Targa: {{booking.targa}}</td>
+                    <td>{{booking.inizioPrenotazione | date: 'MMM d, y'}}</td>
+                    <td>{{booking.finePrenotazione | date: 'MMM d, y'}}</td>
+                    <td>{{booking.days}}</td>
+                    <td>
+                        <strong [ngStyle]="{'color': booking.status === 'APPROVATA' ? 'green' : booking.status === 'RIFIUTATA' ? 'red' : 'orange'}">
+                            {{booking.status}}
+                        </strong>
+                    </td> 
+                    <td>
+                        @if (booking.status == 'IN_ATTESA') {
+                            <div class="actions">
+                                <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+                                (click)="approveBooking(booking.id)">Approva</button>
+                                <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+                                (click)="rejectBooking(booking.id)" nzDanger>Rifiuta</button>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </nz-table>
+</nz-spin>
