@@ -61,3 +61,14 @@ h2:hover {
     padding-bottom: 20px;
     margin-top: 20px;
 }
+
+button.btn-success.ant-btn-primary {
+  background-color: #52c41a;
+  border-color: #52c41a;
+}
+
+button.btn-success.ant-btn-primary:hover,
+button.btn-success.ant-btn-primary:focus {
+  background-color: #73d13d;
+  border-color: #73d13d;
+}

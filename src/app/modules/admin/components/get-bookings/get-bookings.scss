@@ -2,3 +2,59 @@
   display: flex;
   gap: 8px;
 }
+/* card filtri */
+.dashboard-filter {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  margin-bottom: 18px;
+}
+
+/* griglia filtri: 2 colonne */
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 16px 24px;
+  align-items: end;
+}
+
+/* permette ai nz-form-item di stare nella grid */
+.filter-select-dropdown {
+  display: contents;
+}
+
+/* reset margini form item */
+nz-form-item {
+  margin: 0 !important;
+}
+
+/* label stile admin */
+nz-form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #5f6b7a;
+  padding-bottom: 6px;
+}
+
+/* input / select / date full width */
+input[nz-input],
+nz-select,
+nz-date-picker {
+  width: 100%;
+}
+
+/* sezione bottoni */
+.filter-actions {
+  grid-column: 1 / -1; /* occupa tutta la riga */
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+/* bottoni */
+.filter-actions button[nz-button] {
+  min-width: 120px;
+  border-radius: 6px;
+}

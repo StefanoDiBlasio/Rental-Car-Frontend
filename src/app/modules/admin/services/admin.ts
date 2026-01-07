@@ -12,6 +12,38 @@ export class Admin {
   
   constructor(private http: HttpClient) {}
 
+  getAllCustomers(): Observable<any> {
+    return this.http.get(BASE_URL + "/api/v1/user/all/customers", {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+  getUserById(id: number): Observable<any> {
+    return this.http.get(BASE_URL + "/api/v1/user/" + id, {
+      headers: this.createAuthorizationHeader()
+    });
+  }
+
+  updateCustomer(userId:number, userDto: any): Observable<any>{  
+    return this.http.put(BASE_URL + "/api/v1/user/" + userId, userDto, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+  disableUser(userId:any): Observable<any> {
+    return this.http.put(BASE_URL + "/api/v1/user/disable/" + userId, {
+      headers: this.createAuthorizationHeader(),
+      responseType: 'text' as const
+    })
+  }
+
+  enableUser(userId:any): Observable<any> {
+    return this.http.put(BASE_URL + "/api/v1/user/enable/" + userId, {
+      headers: this.createAuthorizationHeader(),
+      responseType: 'text' as const
+    })
+  }
+
   postCar(carDto:any):Observable<any> {
     return this.http.post(BASE_URL + "/api/v1/auto/add", carDto, {
       headers:this.createAuthorizationHeader()
@@ -22,6 +54,11 @@ export class Admin {
     return this.http.get(BASE_URL + "/api/v1/auto/all", {
       headers: this.createAuthorizationHeader()
     })
+  }
+
+  searchBookings(params: any): Observable<any[]> {
+    return this.http.get<any[]>(BASE_URL + '/api/v1/prenotazione/search', 
+      { params, headers: this.createAuthorizationHeader() });
   }
 
   deleteCar(id:number): Observable<any> {

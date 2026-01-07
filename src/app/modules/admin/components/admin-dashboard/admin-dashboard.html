@@ -2,24 +2,26 @@
 
     <div style="padding-top: 10px;"></div>
 
-    @for (car of cars; track car.id) {
+    @for (customer of customers; track customer.id) {
         <div style="margin-top: 10px;" class="child">
             <div nz-row>
                 <div nz-col nzSpan="24">
                     <h2 style="cursor: pointer; color: #108ee9;">
-                        {{car.casaCostruttrice}} - {{car.modello}}
+                        Cliente: {{customer.firstName}} {{customer.lastName}}
                     </h2>
-                    <p>Tipo: {{car.autoType}}</p>
-                    <hr>
-                    <p>Immatricolazione: {{car.annoImmatricolazione}}</p>
-                    <hr>
-                    <h5>Targa: {{car.targa}}</h5>
+                    <p>Data di nascita: {{customer.birthDate}}</p>
                     <hr>
                     <div style="float: right;">
                         <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
-                         [routerLink]="['/admin/car/', car.id]" >Aggiorna targa</button>
-                        <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
-                         (click)="deleteCar(car.id)" nzDanger>Elimina</button>
+                         [routerLink]="['/admin/customer/', customer.id]" >Aggiorna cliente</button>
+                        @if(customer.enabled) {
+                            <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+                            (click)="disableUser(customer.id)" nzDanger>Disabilita</button>
+                        } @else {
+                            <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" class="btn-success"
+                         (click)="enableUser(customer.id)">Abilita</button>
+                        }
+                        
                     </div>
                 </div>
             </div>

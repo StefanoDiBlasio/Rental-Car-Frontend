@@ -1,0 +1,33 @@
+<div style="margin-top: 150px;">
+    <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+        <div class="parent">
+            <div class="child">
+                <div nz-row class="imgDiv">
+                    <h2 style="margin-left: 50px;">Aggiorna anagrafica cliente</h2>
+                </div>
+
+                <form nz-form nzLayout="vertical" [formGroup]="updateForm">
+                    <div nz-row>
+                        <div nz-col nzSpan="24">
+                            <nz-form-item>
+                                <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="Campo richiesto!">
+                                    <input nz-input placeholder="Nome" formControlName="firstName"/>
+                                    <input nz-input placeholder="Cognome" formControlName="lastName"/>
+                                    <nz-date-picker
+                                        nzPlaceHolder="Data di nascita"
+                                        formControlName="birthDate"
+                                        nzFormat="yyyy-MM-dd"
+                                        style="width: 100%;">
+                                    </nz-date-picker>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="updateCustomer()">
+                        Aggiorna
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nz-spin>
+</div>

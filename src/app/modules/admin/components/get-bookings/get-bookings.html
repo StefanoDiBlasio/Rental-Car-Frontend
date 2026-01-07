@@ -1,4 +1,102 @@
 <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+    
+    <div class="dashboard-filter">
+            <div class="filter-grid horizontal-form" [formGroup]="searchBookingForm">
+                <div class="filter-select-dropdown filter-fields-width">
+
+                    <nz-form-item>
+                        <nz-form-label nzFor="gender">N° Prenotazione</nz-form-label>
+                        <nz-form-control nzErrorTip="Campo richiesto!">
+                            <input nz-input type="number" formControlName="id" />
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label>Nome Cliente</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="firstName" />
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label>Cognome Cliente</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="lastName" />
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label nzFor="gender">Marchio</nz-form-label>
+                        <nz-form-control nzErrorTip="Campo richiesto!">
+                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Seleziona un marchio" formControlName="casaCostruttrice">
+                                @for (brand of listOfBrands; track brand) {
+                                    <nz-option nzLabel="{{brand}}" nzValue="{{brand}}"></nz-option>
+                                }
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label nzFor="studentClass">Modello</nz-form-label>
+                        <nz-form-control nzErrorTip="Campo richiesto!">
+                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Seleziona un modello" formControlName="modello">
+                                @for (modello of listOfModels; track modello) {
+                                    <nz-option nzLabel="{{modello}}" nzValue="{{modello}}"></nz-option>
+                                }
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label>Targa</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="targa" />
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label nzFor="gender">Stato</nz-form-label>
+                        <nz-form-control nzErrorTip="Campo richiesto!">
+                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Seleziona uno stato" formControlName="status">
+                                @for (status of listOfStatus; track status) {
+                                    <nz-option nzLabel="{{status}}" nzValue="{{status}}"></nz-option>
+                                }
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label>Inizio Prenotazione</nz-form-label>
+                        <nz-form-control>
+                            <nz-date-picker
+                                nzPlaceHolder="Data inizio prenotazione"
+                                formControlName="inizioPrenotazione"
+                                nzFormat="yyyy-MM-dd"
+                                style="width: 100%;">
+                            </nz-date-picker>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-label>Fine Prenotazione</nz-form-label>
+                        <nz-form-control>
+                            <nz-date-picker
+                                nzPlaceHolder="Data fine prenotazione"
+                                formControlName="finePrenotazione"
+                                nzFormat="yyyy-MM-dd"
+                                style="width: 100%;">
+                            </nz-date-picker>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                </div>
+
+                <div class="filter-actions">
+                    <button nz-button nzType="primary" (click)="searchBookings()">Cerca</button>
+                    <button nz-button nzType="primary" (click)="reset()" nzDanger>Reset</button>
+                </div>
+            </div>
+        </div>
     <nz-table #basicTable [nzData]="bookings" [nzPageSize]="20" [nzShowPagination]="'false'">
         <thead>
             <tr>

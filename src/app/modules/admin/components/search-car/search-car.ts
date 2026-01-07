@@ -4,19 +4,18 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormItemComponent, NzFormModule } from "ng-zorro-antd/form";
 import { NzColDirective } from "ng-zorro-antd/grid";
-import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSelectComponent, NzSelectModule } from "ng-zorro-antd/select";
 import { Admin } from '../../services/admin';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-search-car',
   imports: [
     NzFormItemComponent,
     NzFormModule,
-    NzInputModule,
     NzSelectModule,
     NzColDirective,
     CommonModule,
@@ -24,7 +23,8 @@ import { NzMessageService } from 'ng-zorro-antd/message';
     NzSpinModule,
     NzButtonModule,
     ReactiveFormsModule,
-    NzSelectComponent
+    NzSelectComponent,
+    RouterModule
 ],
   templateUrl: './search-car.html',
   styleUrl: './search-car.scss',
@@ -47,6 +47,24 @@ export class SearchCar {
       autoType: [null],
       targa: [null]
     })
+
+    this.getAllCars();
+  }
+
+  getAllCars(){
+    this.isSpinning = true;
+    this.adminService.getAllCars().subscribe({
+      next: (res:any) => {
+        console.log(res);
+        this.isSpinning = false;
+        this.cars = res.map((b:any) => ({
+          ...b
+        }))
+      },
+      error: () => {
+        this.message.error("Qualcosa è andato storto nel reperimento delle auto.", {nzDuration: 5000})
+      }
+    })
   }
 
   searchCar(){
@@ -65,6 +83,19 @@ export class SearchCar {
       },
       error: () => {
         this.message.error("Qualcosa è andato storto durante la ricerca filtrata.", {nzDuration:5000});
+      }
+    })
+  }
+
+  deleteCar(id:number) {
+    console.log(id);
+    this.adminService.deleteCar(id).subscribe({
+      next: (res:any) => {
+        this.getAllCars();
+        this.message.success("Auto eliminata con successo!", {nzDuration: 5000})
+      },
+      error : (err) => {
+        this.message.error("Si è verificato un errore nell'eliminazione dell'auto.")
       }
     })
   }
