@@ -1,0 +1,142 @@
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding-top: 24px;
+  box-sizing: border-box;
+}
+
+
+.child {
+  padding: 20px;
+  background-color: #f4f6f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  max-width: 420px;
+  width: 100%;
+}
+
+.imgDiv {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+nz-form-item {
+  margin-bottom: 16px;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.imgDiv {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.imgDiv h2 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 20px;
+  color: #111827;
+}
+
+/* spacing form */
+nz-form-item {
+  margin-bottom: 14px;
+}
+
+/* label look */
+nz-form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+/* input / date picker border + height */
+input[nz-input],
+nz-date-picker {
+  width: 100%;
+}
+
+input[nz-input] {
+  height: 38px;
+  border-radius: 8px;
+}
+
+/* datepicker input */
+:host ::ng-deep .ant-picker {
+  height: 38px;
+  border-radius: 8px;
+}
+
+/* focus nicer */
+:host ::ng-deep input.ant-input:focus,
+:host ::ng-deep .ant-picker-focused {
+  box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.15);
+  border-color: #1890ff;
+}
+
+/* buttons row */
+.btn-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+/* make buttons smaller and consistent */
+:host ::ng-deep .btn-row .ant-btn {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* optional: make back button slightly red-ish outline */
+.btn-back {
+  border-color: #ff4d4f !important;
+  color: #ff4d4f !important;
+}
+
+.btn-back:hover {
+  border-color: #ff7875 !important;
+  color: #ff7875 !important;
+}
+
+/* spazio tra tutti i controlli dentro lo stesso nz-form-control */
+:host ::ng-deep nz-form-control input[nz-input]{
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* il datepicker vero è .ant-picker (wrapper interno) */
+:host ::ng-deep nz-form-control .ant-picker{
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* opzionale: togli il margine all’ultimo */
+:host ::ng-deep nz-form-control .ant-picker:last-child{
+  margin-bottom: 0;
+}
+
+/* container bottoni */
+.btn-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* stile base bottoni */
+:host ::ng-deep .btn-row .ant-btn {
+  height: 34px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+}

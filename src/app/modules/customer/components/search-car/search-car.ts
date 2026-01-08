@@ -10,6 +10,7 @@ import { NzSelectModule, NzSelectComponent } from 'ng-zorro-antd/select';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { Customer } from '../../services/customer';
+import { AdminRoutingModule } from '../../../admin/admin-routing-module';
 
 @Component({
   selector: 'app-search-car',
@@ -24,7 +25,8 @@ import { Customer } from '../../services/customer';
     NzSpinModule,
     NzButtonModule,
     ReactiveFormsModule,
-    NzSelectComponent
+    NzSelectComponent,
+    AdminRoutingModule
   ],
   templateUrl: './search-car.html',
   styleUrl: './search-car.scss',

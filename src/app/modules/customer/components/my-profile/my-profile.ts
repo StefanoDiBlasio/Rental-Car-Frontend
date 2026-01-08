@@ -2,17 +2,17 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { Admin } from '../../services/admin';
-import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { Admin } from '../../../admin/services/admin';
 
 @Component({
-  selector: 'app-update-customer',
+  selector: 'app-my-profile',
   imports: [
     NzSpinModule,
     NzFormModule,
@@ -23,10 +23,10 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
     ReactiveFormsModule,
     NzDatePickerModule
   ],
-  templateUrl: './update-customer.html',
-  styleUrl: './update-customer.scss',
+  templateUrl: './my-profile.html',
+  styleUrl: './my-profile.scss',
 })
-export class UpdateCustomer {
+export class MyProfile {
 
   isSpinning = false;
   userId!:number;
@@ -39,7 +39,7 @@ export class UpdateCustomer {
     private router: Router) {}
 
   ngOnInit() {
-    this.userId = Number(this.activatedRoute.snapshot.params["id"]);
+    this.userId = JSON.parse(localStorage.getItem('user')!).id;
     this.updateForm = this.fb.group({
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
@@ -63,12 +63,12 @@ export class UpdateCustomer {
         });
       },
       error: (err) => {
-        this.message.error("Qualcosa è andato storto con il reperimento dei dati del cliente.");
+        this.message.error("Qualcosa è andato storto con il reperimento dei dati dell'utente.");
       }
     })
   }
 
-  updateCustomer() {
+  updateAnagrafica() {
     this.isSpinning = true;
     const payload = {
       firstName: this.updateForm.value.firstName,
@@ -82,13 +82,17 @@ export class UpdateCustomer {
       next: (res:any) => {
         this.isSpinning = false;
         this.message.success("Anagrafica cliente aggiornata con successo!", {nzDuration: 5000});
-        this.router.navigateByUrl("/admin/dashboard");
+        this.router.navigateByUrl("/customer/dashboard");
         console.log(res);
       },
       error: (err) => {
         console.log(err);
-        this.message.error("C'è stato un errore durante l'aggiornamento del cliente.", {nzDuration: 5000});
+        this.message.error("C'è stato un errore durante l'aggiornamento dell'utente.", {nzDuration: 5000});
       }
     })
+  }
+
+  back() {
+    this.router.navigateByUrl("/customer/dashboard");
   }
 }

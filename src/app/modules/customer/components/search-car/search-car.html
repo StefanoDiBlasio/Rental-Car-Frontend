@@ -73,6 +73,11 @@
                     <p>Immatricolazione: {{car.annoImmatricolazione}}</p>
                     <hr>
                     <h5>Targa: {{car.targa}}</h5>
+                    <hr>
+                    <div style="text-align: right;">
+                        <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+                        routerLink="/customer/book/{{car.id}}">Prenota</button>
+                    </div>
                 </div>
             </div>
         </div>
